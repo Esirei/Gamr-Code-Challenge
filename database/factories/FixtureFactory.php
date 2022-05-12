@@ -23,6 +23,6 @@ class FixtureFactory extends Factory
 
     protected function scoreFactory()
     {
-        return fn($attrs) => $this->faker->numberBetween(0, now()->gt($attrs['date']) ? 0 : 10);
+        return fn($attrs) => $this->faker->numberBetween(0, now()->lt($attrs['date']) ? 0 : 10);
     }
 }
