@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Actions\GenerateUserToken;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Password;
 
@@ -18,7 +19,7 @@ class RegisterController extends Controller
         ]);
 
         $user = User::create($data);
-        $token = $user->createToken(config('app.name'))->plainTextToken;
+        $token = app(GenerateUserToken::class)->execute($user);
 
         return response()->json(['data' => compact('token', 'user')], 201);
     }
