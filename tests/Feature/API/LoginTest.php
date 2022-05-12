@@ -25,8 +25,8 @@ class LoginTest extends TestCase
             'password' => 'password',
         ])
             ->assertSuccessful()
-            ->assertJsonPath('data.user.id', $this->user->id)
-            ->assertJsonStructure(['data' => ['token', 'user' => ['id']]]);
+            ->assertJsonPath('data.id', $this->user->id)
+            ->assertJsonStructure(['token', 'data' => ['id']]);
     }
 
     public function testUserEnteredWrongCredentials()

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Actions\GenerateUserToken;
 use Illuminate\Http\Request;
@@ -21,6 +22,6 @@ class RegisterController extends Controller
         $user = User::create($data);
         $token = app(GenerateUserToken::class)->execute($user);
 
-        return response()->json(['data' => compact('token', 'user')], 201);
+        return UserResource::make($user)->additional(compact('token'));
     }
 }

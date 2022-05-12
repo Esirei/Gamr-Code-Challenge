@@ -16,8 +16,8 @@ class RegistrationTest extends TestCase
 
         $this->postJson(route('api.register'), $user = array_merge($data, ['password_confirmation' => $data['password']]))
             ->assertCreated()
-            ->assertJsonPath('data.user.email', $user['email'])
-            ->assertJsonStructure(['data' => ['user' => ['id', 'email'], 'token']]);
+            ->assertJsonPath('data.email', $user['email'])
+            ->assertJsonStructure(['data' => ['id', 'email'], 'token']);
     }
 
     public function testUserRegistrationPasswordConfirmationError()

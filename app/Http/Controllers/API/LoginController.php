@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Actions\GenerateUserToken;
+use App\Http\Resources\UserResource;
 
 class LoginController extends Controller
 {
@@ -13,8 +14,6 @@ class LoginController extends Controller
         $user = $request->authenticate();
         $token = app(GenerateUserToken::class)->execute($user);
 
-        return response()->json([
-            'data' => compact('token', 'user'),
-        ]);
+        return UserResource::make($user)->additional(compact('token'));
     }
 }
