@@ -9,6 +9,10 @@ class Fixture extends Model
 {
     use HasFactory;
 
+    const UPCOMING = 'upcoming';
+    const ONGOING = 'ongoing';
+    const FINISHED = 'finished';
+
     protected $casts = [
         'date' => 'datetime',
     ];

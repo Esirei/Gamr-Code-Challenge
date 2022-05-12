@@ -18,6 +18,7 @@ class FixtureFactory extends Factory
             'home_team_score' => $this->scoreFactory(),
             'away_team_score' => $this->scoreFactory(),
             'date' => $this->faker->dateTimeBetween('-1 years', '+1 years'),
+            'status' => $this->faker->randomElement([Fixture::UPCOMING, Fixture::ONGOING, Fixture::FINISHED]),
         ];
     }
 

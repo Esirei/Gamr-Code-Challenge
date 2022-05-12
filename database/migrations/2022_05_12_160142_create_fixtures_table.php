@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Fixture;
 use App\Models\Team;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,6 +16,7 @@ class CreateFixturesTable extends Migration
             $table->foreignIdFor(Team::class, 'away_team_id')->constrained('teams');
             $table->unsignedTinyInteger('home_team_score')->default(0);
             $table->unsignedTinyInteger('away_team_score')->default(0);
+            $table->string('status', 20)->default(Fixture::UPCOMING);
             $table->dateTime('date');
             $table->timestamps();
         });
