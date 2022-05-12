@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\Match\HistoryController;
+use App\Http\Controllers\API\Match\UpcomingController;
 use App\Http\Controllers\API\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,5 @@ Route::name('api.')->group(function () {
     Route::post('register', RegisterController::class)->name('register');
 
     Route::get('history', HistoryController::class)->name('history');
+    Route::get('upcoming', UpcomingController::class)->name('upcoming');
 });
