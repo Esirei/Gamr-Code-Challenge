@@ -16,6 +16,6 @@ class UpcomingTest extends TestCase
 
         $this->getJson(route('api.upcoming'))
             ->assertOk()
-            ->assertJsonStructure([['teams' => ['home', 'away'], 'date']]);
+            ->assertJsonStructure(['data' => [['teams' => ['home', 'away'], 'date']]]);
     }
 }

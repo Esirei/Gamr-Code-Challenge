@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Match;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Match\UpcomingResource;
 use App\Models\Fixture;
 
 class UpcomingController extends Controller
@@ -12,17 +13,8 @@ class UpcomingController extends Controller
         $result = Fixture::with(['homeTeam', 'awayTeam'])
             ->whereStatus(Fixture::UPCOMING)
             ->orderBy('date')
-            ->get()
-            ->map(function (Fixture $fixture) {
-                return [
-                    'teams' => [
-                        'home' => $fixture->homeTeam,
-                        'away' => $fixture->awayTeam,
-                    ],
-                    'date' => $fixture->date,
-                ];
-            });
+            ->get();
 
-        return $result;
+        return UpcomingResource::collection($result);
     }
 }

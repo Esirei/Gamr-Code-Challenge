@@ -16,6 +16,6 @@ class HistoryTest extends TestCase
 
         $this->getJson(route('api.history'))
             ->assertOk()
-            ->assertJsonStructure([['teams' => ['home', 'away'], 'scores' => ['home', 'away'], 'date']]);
+            ->assertJsonStructure(['data' => [['teams' => ['home', 'away'], 'scores' => ['home', 'away'], 'date']]]);
     }
 }

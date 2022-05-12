@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\FixtureController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\Match\HistoryController;
 use App\Http\Controllers\API\Match\UpcomingController;
@@ -28,4 +29,5 @@ Route::name('api.')->group(function () {
 
     Route::get('history', HistoryController::class)->name('history');
     Route::get('upcoming', UpcomingController::class)->name('upcoming');
+    Route::resource('match', FixtureController::class)->only(['show']);
 });
