@@ -32,4 +32,20 @@ class FixtureFactory extends Factory
     {
         return fn($attrs) => $this->faker->numberBetween(0, now()->lt($attrs['date']) ? 0 : 10);
     }
+
+    public function upcoming()
+    {
+        return $this->state([
+            'status' => Fixture::UPCOMING,
+            'date' => $this->faker->dateTimeBetween('+1 years', '+2 years')
+        ]);
+    }
+
+    public function finished()
+    {
+        return $this->state([
+            'status' => Fixture::FINISHED,
+            'date' => $this->faker->dateTimeBetween('-1 year', '-1 month')
+        ]);
+    }
 }
