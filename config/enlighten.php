@@ -101,8 +101,16 @@ return [
     'modules' => [
         [
             'name' => 'Users',
-            'classes' => ['*User*'],
+            'classes' => ['*User*', '*Login*', '*Registration*'],
             'routes' => ['users/*'],
+        ],
+        [
+            'name' => 'History',
+            'classes' => ['*History*'],
+        ],
+        [
+            'name' => 'Upcoming',
+            'classes' => ['*Upcoming*'],
         ],
         [
             'name' => 'Other Modules',
