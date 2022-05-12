@@ -14,9 +14,7 @@ class HistoryController extends Controller
         $result = Fixture::with(['homeTeam', 'awayTeam'])
             ->whereStatus(Fixture::FINISHED)
             ->when($request->query('date'), fn($query, $date) => $query->whereDate('date', $date))
-            ->when($request->query('team'), function ($query, $team) {
-                $query->where(fn ($query) => $query->where('home_team_id', $team)->orWhere('away_team_id', $team));
-            })
+            ->when($request->query('team'), fn ($query, $team) => $query->teamId($team))
             ->orderByDesc('date')
             ->get();
 
