@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Builder;
+use App\Models\EloquentBuilders\FixtureBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,8 +28,8 @@ class Fixture extends Model
         return $this->belongsTo(Team::class, 'away_team_id');
     }
 
-    protected function scopeTeamId(Builder $builder, int $teamId)
+    public function newEloquentBuilder($query)
     {
-        $builder->where(fn ($query) => $query->where('home_team_id', $teamId)->orWhere('away_team_id', $teamId));
+        return new FixtureBuilder($query);
     }
 }
