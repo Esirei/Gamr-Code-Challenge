@@ -15,9 +15,10 @@ class SendMatchStartingNotificationCommand extends Command
 
     public function handle()
     {
+        $time = now()->startOfMinute();
         Fixture::with(['homeTeam.user', 'awayTeam.user'])
-            ->whereDate('date', now())
-            ->whereTime('date', now())
+            ->whereDate('date', $time)
+            ->whereTime('date', $time)
             ->tap(fn(Builder $query) => $query->update(['status' => Fixture::ONGOING]))
             ->each(function (Fixture $match) {
                 $match->homeTeam->user->notify(new MatchStartingNotification($match));
